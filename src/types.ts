@@ -324,4 +324,8 @@ export interface StreamProps {
    * Fires when ad-url attribute is present and the ad took too long to load.
    */
   onStreamAdTimeout?: EventListener;
+  /**
+   * Override the "embed.cloudflarestream.com" domain with your custom subdomain for loading scripts
+   */
+  customerDomain?: string;  
 }
