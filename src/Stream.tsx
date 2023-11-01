@@ -51,8 +51,9 @@ function useEvent(
 const noop = () => {};
 
 export const Stream: FC<StreamProps> = (props) => {
-  const streamSdk = useStreamSDK();
-  return streamSdk ? <StreamEmbed {...props} /> : null;
+  const { customerDomain, ...otherProps } = props
+  const streamSdk = useStreamSDK(customerDomain);
+  return streamSdk ? <StreamEmbed {...otherProps} /> : null;
 };
 
 const responsiveIframeStyles: CSSProperties = {
