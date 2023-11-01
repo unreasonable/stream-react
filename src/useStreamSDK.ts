@@ -8,7 +8,7 @@ export const safelyAccessStreamSDK = () => {
   return window.Stream;
 };
 
-export function useStreamSDK(customerDomain) {
+export function useStreamSDK(customerDomain: string) {
   const sdkSubdomain = customerDomain ? customerDomain : "embed"
   const sdkScriptLocation = `https://${sdkSubdomain}.cloudflarestream.com/embed/sdk.latest.js`
   const [streamSdk, setStreamSdk] = useState(safelyAccessStreamSDK);
