@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 
-const sdkScriptLocation =
-  "https://embed.cloudflarestream.com/embed/sdk.latest.js";
-
 // This needs to be wrapped as such for two reasons:
 // - Stream is a function, and useState invokes functions immediately and uses the return value.
 // - We need to check typeof on window to ensure safety for server side rendering.
@@ -11,7 +8,9 @@ export const safelyAccessStreamSDK = () => {
   return window.Stream;
 };
 
-export function useStreamSDK() {
+export function useStreamSDK(customerDomain) {
+  const sdkSubdomain = customerDomain ? customerDomain : "embed"
+  const sdkScriptLocation = `https://${sdkSubdomain}.cloudflarestream.com/embed/sdk.latest.js`
   const [streamSdk, setStreamSdk] = useState(safelyAccessStreamSDK);
 
   useEffect(() => {
